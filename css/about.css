@@ -1,0 +1,164 @@
+.about .content {
+  flex: 1;
+  padding: 8rem;
+  text-align: center;
+}
+
+.about .content h3 {
+  font-size: 2rem; /* Set heading font size */
+}
+
+.about .content p {
+  font-size: 1.5rem; /* Set paragraph font size */
+}
+.about .row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.about .row .image {
+  flex: 1 1 40rem;
+}
+
+.about .row .content {
+  flex: 1 1 50em;
+}
+
+.about .row .content p {
+  font-size: 1.7rem;
+  line-height: 2;
+  color: var(--light-color);
+  padding: 1rem 0;
+}
+
+.about .row .content h3 {
+  font-size: 50%;
+  color: var(--black);
+  text-transform: capitalize;
+}
+
+.about .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 3rem;
+}
+
+.about .box-container .box {
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.about .box-container .box i {
+  font-size: 4rem;
+  color: var(--main-color);
+}
+
+.about .box-container .box h3 {
+  font-size: 2.5rem;
+  color: var(--black);
+  margin-bottom: 0.3rem;
+}
+
+.about .box-container .box p {
+  font-size: 1.7rem;
+  color: var(--light-color);
+}
+/* Container for the "Why Choose Us?" section */
+.container {
+  max-width: 1000px; /* Adjust max-width as needed */
+  margin: 0 auto; /* Center the container */
+  padding: 4rem 2rem; /* Add padding inside the container */
+  background-color: var(--white); /* Background color */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+}
+
+.container .content {
+  text-align: center; /* Center the text */
+}
+
+.container .content h3 {
+  font-size: 2.5rem; /* Adjust heading size */
+  color: var(--black); /* Adjust text color */
+  margin-bottom: 1rem; /* Add space below the heading */
+}
+
+.container .content a {
+  font-size: 2.5rem; /* Adjust heading size */
+  color: var(--black); /* Adjust text color */
+  margin-bottom: 1rem; /* Add space below the heading */
+}
+
+.container .content p {
+  font-size: 1.5rem; /* Adjust paragraph font size */
+  color: var(--light-color); /* Text color */
+  margin-bottom: 2rem; /* Add space below the paragraph */
+}
+
+.container .inline-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--main-color); /* Button background color */
+  color: var(--white); /* Button text color */
+  border-radius: 0.5rem; /* Rounded corners for the button */
+  text-decoration: none; /* Remove underline */
+  font-size: 1.5rem;
+}
+
+.container .inline-btn:hover {
+  background-color: var(--dark-color); /* Button color on hover */
+}
+
+.reviews .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.reviews .box-container .box {
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  padding: 2rem;
+}
+
+.reviews .box-container .box p {
+  line-height: 1.7;
+  font-size: 1.7rem;
+  color: var(--light-color);
+}
+
+.reviews .box-container .box .student {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.reviews .box-container .box .student img {
+  height: 5rem;
+  width: 5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.reviews .box-container .box .student h3 {
+  font-size: 2rem;
+  color: var(--black);
+  margin-bottom: 0.3rem;
+}
+
+.reviews .box-container .box .student .stars {
+  font-size: 1.5rem;
+  color: var(--orange);
+}
