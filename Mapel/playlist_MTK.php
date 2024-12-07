@@ -151,13 +151,13 @@ try {
         <a class="box" href="MTK/watch-video.php">
           <i class="fas fa-play"></i>
           <img src="../images/MathT.png" alt="" />
-          <h3>Eksponen</h3>
+          <h3>SPtLDV (Sistem Pertidaksamaan Linear Dua Variabel)</h3>
         </a>
 
         <a class="box" href="MTK/watch-video2.php">
           <i class="fas fa-play"></i>
           <img src="../images/MathT.png" alt="" />
-          <h3>SPtLDV (Sistem Pertidaksamaan Linear Dua Variabel)</h3>
+          <h3>Eksponen</h3>
         </a>
 
         <a class="box" href="MTK/watch-video3.php">
