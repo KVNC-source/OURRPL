@@ -17,6 +17,7 @@ if (isset($_POST['login_submit'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_age'] = $user['age']; // Store age in session
             header("Location: home.php");
             exit();
         } else {
@@ -33,6 +34,7 @@ if (isset($_POST['register_submit'])) {
     $email = $_POST['email'];
     $password = $_POST['pass'];
     $confirm_password = $_POST['c_pass'];
+    $age = intval($_POST['age']); // Get the age input and sanitize it
 
     if ($password !== $confirm_password) {
         $register_error = "Passwords do not match!";
@@ -46,10 +48,11 @@ if (isset($_POST['register_submit'])) {
         if ($stmt->rowCount() > 0) {
             $register_error = "User already exists!";
         } else {
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password, age) VALUES (:username, :email, :password, :age)");
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $hashed_password);
+            $stmt->bindParam(':age', $age);
 
             if ($stmt->execute()) {
                 $register_success = "Registration successful! You can now log in.";
@@ -108,8 +111,8 @@ if (isset($_POST['register_submit'])) {
         <input type="password" name="pass" placeholder="Enter your password" required maxlength="20" class="box">
         <p>Confirm password <span>*</span></p>
         <input type="password" name="c_pass" placeholder="Confirm your password" required maxlength="20" class="box">
-        <p>Select profile <span>*</span></p>
-        <input type="file" accept="image/*" required class="box">
+        <p>Your age <span>*</span></p>
+        <input type="number" name="age" placeholder="Enter your age" required min="1" class="box">
         <input type="submit" value="Register New" name="register_submit" class="btn">
         <?php
         if (isset($register_error)) echo "<p style='color: red;'>$register_error</p>";

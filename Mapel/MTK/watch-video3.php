@@ -167,12 +167,13 @@ try {
   <section class="watch-video">
     <div class="video-container">
       <div class="video">
-        <video
-            src="<?php echo htmlspecialchars($video_url); ?>"
-            controls
-            poster="<?php echo htmlspecialchars($poster_url); ?>"
-            id="video"
-        ></video>
+      <iframe 
+          src="<?php echo htmlspecialchars($video_url); ?>"
+          width="100%" 
+          height="auto" 
+          allow="autoplay; fullscreen" 
+          style="border-radius: 0.5rem;">
+        </iframe>
       </div>
       <h3 class="title"><?php echo htmlspecialchars($video_title); ?></h3>
       <div class="info">
