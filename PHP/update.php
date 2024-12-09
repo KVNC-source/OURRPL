@@ -28,6 +28,8 @@ try {
     if ($user) {
         // Extract the username for display
         $user_name = $user['username'];
+        $user_age = $user['age'];
+        $user_gender = $user['gender'];
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
@@ -40,6 +42,8 @@ try {
         // Get input values
         $new_name = $_POST['name'] ?? '';
         $new_email = $_POST['email'] ?? '';
+        $age = $_POST['age'] ?? '';
+        $gender = $_POST['gender'] ?? '';
         $old_pass = $_POST['old_pass'] ?? '';
         $new_pass = $_POST['new_pass'] ?? '';
         $c_pass = $_POST['c_pass'] ?? '';
@@ -53,9 +57,11 @@ try {
             // Prepare the update values
             $final_name = !empty($new_name) ? $new_name : $user['username'];
             $final_email = !empty($new_email) ? $new_email : $user['email'];
+            $final_age = !empty($age) ? $age : $user['age'];
+            $final_gender = !empty($gender) ? $gender : $user['gender'];
 
             // Update query
-            $update_query = "UPDATE users SET username = :username, email = :email";
+            $update_query = "UPDATE users SET username = :username, email = :email, age = :age, gender = :gender";
             if (!empty($new_pass)) {
                 $update_query .= ", password = :password";
             }
@@ -65,6 +71,8 @@ try {
             $update_stmt = $conn->prepare($update_query);
             $update_stmt->bindParam(':username', $final_name, PDO::PARAM_STR);
             $update_stmt->bindParam(':email', $final_email, PDO::PARAM_STR);
+            $update_stmt->bindParam(':age', $final_age, PDO::PARAM_INT);
+            $update_stmt->bindParam(':gender', $final_gender, PDO::PARAM_STR);
             if (!empty($new_pass)) {
                 $hashed_pass = password_hash($new_pass, PASSWORD_DEFAULT);
                 $update_stmt->bindParam(':password', $hashed_pass, PDO::PARAM_STR);
@@ -86,14 +94,13 @@ try {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>update</title>
+    <title>Update Profile</title>
 
     <!-- font awesome cdn link  -->
     <link
@@ -108,36 +115,19 @@ try {
   <body>
     <header class="header">
       <section class="flex">
-        <a href="home.php" class="logo">ZonaCerdas 
-        </a>
+        <a href="home.php" class="logo">ZonaCerdas</a>
 
-        <form action="search.php" method="post" class="search-form">
-          <input
-            type="text"
-            name="search_box"
-            required
-            placeholder="search courses..."
-            maxlength="100"
-          />
-          <button type="submit" class="fas fa-search"></button>
-        </form>
 
         <div class="icons">
           <div id="menu-btn" class="fas fa-bars"></div>
-          <div id="search-btn" class="fas fa-search"></div>
           <div id="user-btn" class="fas fa-user"></div>
-          <div id="toggle-btn" class="fas fa-sun"></div>
         </div>
 
         <div class="profile">
           <img src="../images/pic-1.jpg" class="image" alt="" />
-          <h3 class="name"></h3>  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3><p class="role">studen</p>
-          <p class="role">studen</p>
-          <a href="profile.php" class="btn">view profile</a>
-          <div class="flex-btn">
-            <a href="login.php" class="option-btn">login</a>
-            <a href="register.php" class="option-btn">register</a>
-          </div>
+          <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
+          <p class="role">Student</p>
+          <a href="profile.php" class="btn">View Profile</a>
         </div>
       </section>
     </header>
@@ -149,32 +139,24 @@ try {
 
       <div class="profile">
         <img src="../images/pic-1.jpg" class="image" alt="" />
-        <h3 class="name"></h3>  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3><p class="role">
-        <p class="role">studen</p>
-        <a href="profile.php" class="btn">view profile</a>
+        <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
+        <p class="role">Student</p>
+        <a href="profile.php" class="btn">View Profile</a>
       </div>
 
       <nav class="navbar">
-        <a href="home.php"><i class="fas fa-home"></i><span>home</span></a>
-        <a href="about.php"
-          ><i class="fas fa-question"></i><span>about</span></a
-        >
-        <a href="courses.php"
-          ><i class="fas fa-graduation-cap"></i><span>courses</span></a
-        >
-        <a href="teachers.php"
-          ><i class="fas fa-chalkboard-user"></i><span>teachers</span></a
-        >
-        <a href="contact.php"
-          ><i class="fas fa-headset"></i><span>contact us</span></a
-        >
+        <a href="home.php"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="about.php"><i class="fas fa-question"></i><span>About</span></a>
+        <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
+        <a href="teachers.php"><i class="fas fa-chalkboard-user"></i><span>Teachers</span></a>
+        <a href="contact.php"><i class="fas fa-headset"></i><span>Contact Us</span></a>
       </nav>
     </div>
 
     <section class="form-container">
       <form action="" method="post" enctype="multipart/form-data">
-        <h3>update profile</h3>
-        <p>update name</p>
+        <h3>Update Profile</h3>
+        <p>Update Name</p>
         <input
           type="text"
           name="name"
@@ -182,7 +164,7 @@ try {
           maxlength="50"
           class="box"
         />
-        <p>update email</p>
+        <p>Update Email</p>
         <input
           type="email"
           name="email"
@@ -190,39 +172,52 @@ try {
           maxlength="50"
           class="box"
         />
-        <p>previous password</p>
+        <p>Update Age</p>
+        <input
+          type="number"
+          name="age"
+          placeholder="Enter your age"
+          min="1"
+          max="120"
+          class="box"
+          value="<?php echo htmlspecialchars($user_age); ?>"
+        />
+        <p>Update Gender</p>
+        <select name="gender" class="box">
+          <option value="male" <?php echo $user_gender == 'male' ? 'selected' : ''; ?>>Male</option>
+          <option value="female" <?php echo $user_gender == 'female' ? 'selected' : ''; ?>>Female</option>
+          <option value="other" <?php echo $user_gender == 'other' ? 'selected' : ''; ?>>Other</option>
+        </select>
+        <p>Previous Password</p>
         <input
           type="password"
           name="old_pass"
-          placeholder="enter your old password"
+          placeholder="Enter your old password"
           maxlength="20"
           class="box"
         />
-        <p>new password</p>
+        <p>New Password</p>
         <input
           type="password"
           name="new_pass"
-          placeholder="enter your old password"
+          placeholder="Enter your new password"
           maxlength="20"
           class="box"
         />
-        <p>confirm password</p>
+        <p>Confirm Password</p>
         <input
           type="password"
           name="c_pass"
-          placeholder="confirm your new password"
+          placeholder="Confirm your new password"
           maxlength="20"
           class="box"
         />
-        <p>update pic</p>
-        <input type="file" accept="image/*" class="box" />
-        <input type="submit" value="update profile" name="submit" class="btn" />
+        <input type="submit" value="Update Profile" name="submit" class="btn" />
       </form>
     </section>
 
     <footer class="footer">
-      &copy; copyright @ 2022 by <span>mr. web designer</span> | all rights
-      reserved!
+      &copy; copyright @ 2022 by <span>mr. web designer</span> | all rights reserved!
     </footer>
 
     <!-- custom js file link  -->

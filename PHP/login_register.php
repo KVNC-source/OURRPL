@@ -17,7 +17,6 @@ if (isset($_POST['login_submit'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
-            $_SESSION['user_age'] = $user['age']; // Store age in session
             header("Location: home.php");
             exit();
         } else {
@@ -34,7 +33,8 @@ if (isset($_POST['register_submit'])) {
     $email = $_POST['email'];
     $password = $_POST['pass'];
     $confirm_password = $_POST['c_pass'];
-    $age = intval($_POST['age']); // Get the age input and sanitize it
+    $gender = $_POST['gender'];
+    $age = $_POST['age'];
 
     if ($password !== $confirm_password) {
         $register_error = "Passwords do not match!";
@@ -48,10 +48,11 @@ if (isset($_POST['register_submit'])) {
         if ($stmt->rowCount() > 0) {
             $register_error = "User already exists!";
         } else {
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password, age) VALUES (:username, :email, :password, :age)");
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password, gender, age) VALUES (:username, :email, :password, :gender, :age)");
             $stmt->bindParam(':username', $username);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $hashed_password);
+            $stmt->bindParam(':gender', $gender);
             $stmt->bindParam(':age', $age);
 
             if ($stmt->execute()) {
@@ -94,10 +95,9 @@ if (isset($_POST['register_submit'])) {
         <?php if (isset($login_error)) echo "<p style='color: red;'>$login_error</p>"; ?>
         
         <div class="form-toggle-log">
-        <button onclick="showForm('login')">Login</button>
-        <button onclick="showForm('register')">Register</button>
-    </div>
-
+            <button onclick="showForm('login')">Login</button>
+            <button onclick="showForm('register')">Register</button>
+        </div>
     </form>
 
     <!-- Register Form -->
@@ -111,20 +111,25 @@ if (isset($_POST['register_submit'])) {
         <input type="password" name="pass" placeholder="Enter your password" required maxlength="20" class="box">
         <p>Confirm password <span>*</span></p>
         <input type="password" name="c_pass" placeholder="Confirm your password" required maxlength="20" class="box">
-        <p>Your age <span>*</span></p>
-        <input type="number" name="age" placeholder="Enter your age" required min="1" class="box">
+        <p>Gender <span>*</span></p>
+        <select name="gender" required class="box">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <p>Age <span>*</span></p>
+        <input type="number" name="age" placeholder="Enter your age" required min="0" class="box">
         <input type="submit" value="Register New" name="register_submit" class="btn">
         <?php
         if (isset($register_error)) echo "<p style='color: red;'>$register_error</p>";
         if (isset($register_success)) echo "<p style='color: green;'>$register_success</p>";
         ?>
         <div class="form-toggle-log">
-        <button onclick="showForm('login')">Login</button>
-        <button onclick="showForm('register')">Register</button>
-    </div>
+            <button onclick="showForm('login')">Login</button>
+            <button onclick="showForm('register')">Register</button>
+        </div>
     </form>
 </section>
-
 
 <script src="../js/script.js"></script>
 </body>
