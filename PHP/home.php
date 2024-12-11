@@ -84,7 +84,7 @@ try {
             <a href="login_register.php" class="option-btn">logout</a>
           </div>
           <div class="flex-btn">
-            <a href="update.php" class="option-btn">lUpdate</a>
+            <a href="update.php" class="option-btn">Update</a>
           </div>
         </div>
       </section>
@@ -119,9 +119,8 @@ try {
     <div class="box-container">
 
         <div class="box">
-            <h3 class="title">top categories</h3>
+            <h3 class="title">Extras</h3>
             <div class="flex">
-                <a href="#"><i class="fas fa-code"></i><span>development</span></a>
                 <a href="index.html"><i class="fas fa-chart-simple"></i><span>Test Your Knowledge</span></a>
                 <a href="https://open.spotify.com/playlist/4nLTHoBe6O9URrHV2LiqXB?si=13527ec869fe4d48"><i class="fas fa-music"></i><span>music</span></a>
             </div>
@@ -143,9 +142,9 @@ try {
         <!-- Example course boxes -->
         <div class="box">
             <div class="tutor">
-                <img src="../images/pic-2.jpg" alt="">
+                <img src="../images/school.png" alt="">
                 <div class="info">
-                    <h3>John Deo</h3>
+                    <h3>Ms. Ratna</h3>
                     <span>21-10-2022</span>
                 </div>
             </div>
@@ -154,7 +153,7 @@ try {
                 <img src="../images/MathT.png" alt="">
                 <span>10 videos</span>
             </div>
-            <h3 class="title">Complete HTML Tutorial</h3>
+            <h3 class="title">Matematika</h3>
             <a href="../Mapel/playlist_MTK.php" class="inline-btn">view playlist</a>
         </div>
     </div>

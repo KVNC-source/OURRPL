@@ -26,8 +26,17 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Extract the username for display
+        // Extract user details for display
         $user_name = $user['username'];
+        $user_gender = $user['gender'];
+
+        // Determine profile picture based on gender
+        $profile_picture = "../images/default.png"; // Default profile picture
+        if ($user_gender === "Male") {
+            $profile_picture = "../images/male-profile.png";
+        } elseif ($user_gender === "Female") {
+            $profile_picture = "../images/female-profile.png";
+        }
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
@@ -38,7 +47,6 @@ try {
     die("Database error: " . $e->getMessage());
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +79,7 @@ try {
         </div>
 
         <div class="profile">
-          <img src="../images/pic-1.jpg" class="image" alt="" />
+        <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
           <h3 class="name"></h3>  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3><p class="role">
           <p class="role">studen</p>
           <a href="profile.php" class="btn">view profile</a>
@@ -79,7 +87,7 @@ try {
             <a href="login_register.php" class="option-btn">logout</a>
           </div>
           <div class="flex-btn">
-            <a href="update.php" class="option-btn">lUpdate</a>
+            <a href="update.php" class="option-btn">Update</a>
           </div>
         </div>
       </section>
@@ -91,7 +99,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">studen</p>
         <a href="profile.php" class="btn">view profile</a>
@@ -122,15 +130,15 @@ try {
       <!-- Matematika  -->
         <div class="box">
           <div class="tutor">
-            <img src="../images/pic-2.jpg" alt="" />
+            <img src="../images/school.png" alt="" />
             <div class="info">
-              <h3>Sir Laliput</h3>
+              <h3>Ms. Ratna</h3>
               <span>21-10-2022</span>
             </div>
           </div>
           <div class="thumb">
             <img src="../images/MathT.png" alt="" />
-            <span>10 videos</span>
+            <span>9 videos</span>
           </div>
           <h3 class="title">Matematika</h3>
           <a href="../Mapel/playlist_MTK.php" class="inline-btn">view playlist</a>
@@ -139,15 +147,15 @@ try {
         <!-- IPA  -->
         <div class="box">
           <div class="tutor">
-            <img src="../images/pic-3.jpg" alt="" />
+            <img src="../images/school.png" alt="" />
             <div class="info">
-              <h3>john deo</h3>
+              <h3>Mr. Imam</h3>
               <span>21-10-2022</span>
             </div>
           </div>
           <div class="thumb">
             <img src="../images/IPAT.jpg" alt="" />
-            <span>10 videos</span>
+            <span>7 videos</span>
           </div>
           <h3 class="title">Ilmu Pengetahuan Alam</h3>
           <a href="../Mapel/playlist_IPA.php" class="inline-btn">view playlist</a>
@@ -156,34 +164,18 @@ try {
         <!-- Bahasa Indonesia -->
         <div class="box">
           <div class="tutor">
-            <img src="../images/pic-4.jpg" alt="" />
+            <img src="../images/school.png" alt="" />
             <div class="info">
-              <h3>john deo</h3>
+              <h3>Ms. Anissa</h3>
               <span>21-10-2022</span>
             </div>
           </div>
           <div class="thumb">
             <img src="../images/INDOT.jpg" alt="" />
-            <span>10 videos</span>
+            <span>8 videos</span>
           </div>
           <h3 class="title">Bahasa Indonesia</h3>
           <a href="../Mapel/playlist_BINDO.php" class="inline-btn">view playlist</a>
-        </div>
-
-        <div class="box">
-          <div class="tutor">
-            <img src="../images/pic-5.jpg" alt="" />
-            <div class="info">
-              <h3>john deo</h3>
-              <span>21-10-2022</span>
-            </div>
-          </div>
-          <div class="thumb">
-            <img src="../images/thumb-4.png" alt="" />
-            <span>10 videos</span>
-          </div>
-          <h3 class="title">complete Boostrap tutorial</h3>
-          <a href="playlist.php" class="inline-btn">view playlist</a>
         </div>
       </div>
     </section>

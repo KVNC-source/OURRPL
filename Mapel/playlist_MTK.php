@@ -26,12 +26,21 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Extract the username for display
+        // Extract user details for display
         $user_name = $user['username'];
+        $user_gender = $user['gender'];
+
+        // Determine profile picture based on gender
+        $profile_picture = "../images/default.png"; // Default profile picture
+        if ($user_gender === "Male") {
+            $profile_picture = "../images/male-profile.png";
+        } elseif ($user_gender === "Female") {
+            $profile_picture = "../images/female-profile.png";
+        }
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
-        header("Location: PHP/login_register.php");
+        header("Location: login_register.php");
         exit();
     }
 } catch (PDOException $e) {
@@ -64,19 +73,16 @@ try {
         </a>
         <div class="icons">
           <div id="menu-btn" class="fas fa-bars"></div>
-          <div id="search-btn" class="fas fa-search"></div>
           <div id="user-btn" class="fas fa-user"></div>
-          <div id="toggle-btn" class="fas fa-sun"></div>
         </div>
 
         <div class="profile">
-          <img src="../images/pic-1.jpg" class="image" alt="" />
+        <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
           <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">studen</p>
-          <a href="../PHP/profile.php" class="btn">view profile</a>
+          <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
           <div class="flex-btn">
-            <a href="../PHP/login.php" class="option-btn">login</a>
-            <a href="../PHP/register.php" class="option-btn">register</a>
+            <a href="/Project RPL/PHP/login_register.php" class="option-btn">logout</a>
           </div>
         </div>
       </section>
@@ -88,7 +94,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">studen</p>
         <a href="../PHP/teacher_profile.php" class="btn">view profile</a>
@@ -123,10 +129,10 @@ try {
         </div>
         <div class="column">
           <div class="tutor">
-            <img src="../images/pic-2.jpg" alt="" />
+            <img src="../images/school.png" alt="" />
             <div>
               <h3>Ms. Ratna</h3>
-              <span>21-10-2022</span>
+              <span>21-10-2024</span>
             </div>
           </div>
 

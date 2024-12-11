@@ -75,7 +75,24 @@ try {
             $message[] = 'Comment cannot be empty!';
         }
     }
+if ($user) {
+    // Extract user details for display
+    $user_name = $user['username'];
+    $user_gender = $user['gender'];
 
+    // Determine profile picture based on gender
+    $profile_picture = "../images/default.png"; // Default profile picture
+    if ($user_gender === "Male") {
+        $profile_picture = "../images/male-profile.png";
+    } elseif ($user_gender === "Female") {
+        $profile_picture = "../images/female-profile.png";
+    }
+} else {
+    // If no user found, destroy session and redirect
+    session_destroy();
+    header("Location: /Project RPL/PHP/login_register.php");
+    exit();
+}
     // Fetch all comments for the video
     $stmt = $conn->prepare("SELECT c.*, u.username
                             FROM comments c 
@@ -88,6 +105,24 @@ try {
     $total_comments = count($comments);
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
+}
+if ($user) {
+  // Extract user details for display
+  $user_name = $user['username'];
+  $user_gender = $user['gender'];
+
+  // Determine profile picture based on gender
+  $profile_picture = "../images/default.png"; // Default profile picture
+  if ($user_gender === "Male") {
+      $profile_picture = "../images/male-profile.png";
+  } elseif ($user_gender === "Female") {
+      $profile_picture = "../images/female-profile.png";
+  }
+} else {
+  // If no user found, destroy session and redirect
+  session_destroy();
+  header("Location: /Project RPL/PHP/login_register.php");
+  exit();
 }
 ?>
 
@@ -122,7 +157,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"></h3>  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">student</p>
         <a href="../PHP/profile.php" class="btn">view profile</a>
@@ -142,10 +177,10 @@ try {
     </div>
 
     <div class="profile">
-      <img src="../images/pic-1.jpg" class="image" alt="" />
+    <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
       <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
       <p class="role">studen</p>
-      <a href="profile.php" class="btn">view profile</a>
+      <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
     </div>
 
     <nav class="navbar">
@@ -160,12 +195,13 @@ try {
   <section class="watch-video">
     <div class="video-container">
       <div class="video">
-        <video
-            src="<?php echo htmlspecialchars($video_url); ?>"
-            controls
-            poster="<?php echo htmlspecialchars($poster_url); ?>"
-            id="video"
-        ></video>
+      <iframe 
+          src="<?php echo htmlspecialchars($video_url); ?>"
+          width="100%" 
+          height="auto" 
+          allow="autoplay; fullscreen" 
+          style="border-radius: 0.5rem;">
+        </iframe>
       </div>
       <h3 class="title"><?php echo htmlspecialchars($video_title); ?></h3>
       <div class="info">
@@ -173,7 +209,6 @@ try {
           <i class="fas fa-calendar"></i>
           <span><?php echo htmlspecialchars($video_date); ?></span>
         </p>
-        <p class="date"><i class="fas fa-heart"></i><span>44 likes</span></p>
       </div>
       <div class="tutor">
         <img src="../images/MTK/pic-2.jpg" alt="" />

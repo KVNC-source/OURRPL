@@ -26,8 +26,17 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Extract the username for display
+        // Extract user details for display
         $user_name = $user['username'];
+        $user_gender = $user['gender'];
+
+        // Determine profile picture based on gender
+        $profile_picture = "../images/default.png"; // Default profile picture
+        if ($user_gender === "Male") {
+            $profile_picture = "../images/male-profile.png";
+        } elseif ($user_gender === "Female") {
+            $profile_picture = "../images/female-profile.png";
+        }
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
@@ -64,9 +73,7 @@ try {
         </a>
         <div class="icons">
           <div id="menu-btn" class="fas fa-bars"></div>
-          <div id="search-btn" class="fas fa-search"></div>
           <div id="user-btn" class="fas fa-user"></div>
-          <div id="toggle-btn" class="fas fa-sun"></div>
         </div>
 
         <div class="profile">
@@ -75,8 +82,7 @@ try {
           <p class="role">studen</p>
           <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
           <div class="flex-btn">
-            <a href="/Project RPL/PHP/login.php" class="option-btn">login</a>
-            <a href="/Project RPL/PHP/register.php" class="option-btn">register</a>
+            <a href="/Project RPL/PHP/login_register.php" class="option-btn">logout</a>
           </div>
         </div>
       </section>
@@ -123,15 +129,15 @@ try {
         </div>
         <div class="column">
           <div class="tutor">
-            <img src="images/pic-2.jpg" alt="" />
+            <img src="../images/school.png" alt="" />
             <div>
-              <h3>john deo</h3>
-              <span>21-10-2022</span>
+              <h3>Ms. Annissa</h3>
+              <span>21-10-2024</span>
             </div>
           </div>
 
           <div class="details">
-            <h3>Ilmu Pengetahuan Alam
+            <h3>Bahasa Indonesia
             </h3>
             <p>
             Bahasa Indonesia adalah alat komunikasi yang memperkaya budaya dan identitas bangsa. 
@@ -139,14 +145,14 @@ try {
             dan keterampilan berbicara. Dengan page ini, 
             Anda dapat meningkatkan kemampuan berbahasa dan mengekspresikan ide dengan lebih baik.
             </p>
-            <a href="/Project RPL/PHP/teacher_profile.php" class="inline-btn">view profile</a>
+            <a href="/Project RPL/PHP/teacher_profile3.php" class="inline-btn">view profile</a>
           </div>
         </div>
       </div>
     </section>
 
     <section class="playlist-videos">
-      <h1 class="/Project RPL/PHP/heading">playlist videos</h1>
+    <h1 class="heading">playlist videos</h1>
 
       <div class="box-container">
         <a class="box" href="B.INDO/watch-video17.php">

@@ -152,7 +152,7 @@ try {
       <img src="../images/pic-1.jpg" class="image" alt="" />
       <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
       <p class="role">studen</p>
-      <a href="profile.php" class="btn">view profile</a>
+      <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
     </div>
 
     <nav class="navbar">
@@ -181,7 +181,6 @@ try {
           <i class="fas fa-calendar"></i>
           <span><?php echo htmlspecialchars($video_date); ?></span>
         </p>
-        <p class="date"><i class="fas fa-heart"></i><span>44 likes</span></p>
       </div>
       <div class="tutor">
         <img src="../images/MTK/pic-2.jpg" alt="" />
@@ -192,7 +191,6 @@ try {
       </div>
       <form action="" method="post" class="flex">
         <a href="../playlist_MTK.php" class="inline-btn">view playlist</a>
-        <button><i class="far fa-heart"></i><span>like</span></button>
       </form>
       <p class="description"><?php echo htmlspecialchars($video_description); ?></p>
     </div>

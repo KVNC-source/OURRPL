@@ -127,7 +127,7 @@ try {
           <img src="../images/pic-1.jpg" class="image" alt="" />
          <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">studen</p>
-          <a href="profile.php" class="btn">view profile</a>
+          <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
           <div class="flex-btn">
             <a href="login_register.php" class="option-btn">logout</a>
           </div>
@@ -149,7 +149,7 @@ try {
       <img src="../images/pic-1.jpg" class="image" alt="" />
       <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
       <p class="role">studen</p>
-      <a href="profile.php" class="btn">view profile</a>
+      <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
     </div>
 
     <nav class="navbar">
@@ -164,12 +164,13 @@ try {
   <section class="watch-video">
     <div class="video-container">
       <div class="video">
-        <video
-            src="<?php echo htmlspecialchars($video_url); ?>"
-            controls
-            poster="<?php echo htmlspecialchars($poster_url); ?>"
-            id="video"
-        ></video>
+      <iframe 
+          src="<?php echo htmlspecialchars($video_url); ?>"
+          width="100%" 
+          height="auto" 
+          allow="autoplay; fullscreen" 
+          style="border-radius: 0.5rem;">
+        </iframe>
       </div>
       <h3 class="title"><?php echo htmlspecialchars($video_title); ?></h3>
       <div class="info">
@@ -177,18 +178,15 @@ try {
           <i class="fas fa-calendar"></i>
           <span><?php echo htmlspecialchars($video_date); ?></span>
         </p>
-        <p class="date"><i class="fas fa-heart"></i><span>44 likes</span></p>
       </div>
       <div class="tutor">
-        <img src="../images/MTK/pic-2.jpg" alt="" />
+        <img src="/Project RPL/images/school.png" alt="" />
         <div>
-          <h3>john deo</h3>
-          <span>developer</span>
+          <h3>Mr. Imam</h3>
         </div>
       </div>
       <form action="" method="post" class="flex">
-        <a href="../playlist_MTK.php" class="inline-btn">view playlist</a>
-        <button><i class="far fa-heart"></i><span>like</span></button>
+        <a href="../playlist_IPA.php" class="inline-btn">view playlist</a>
       </form>
       <p class="description"><?php echo htmlspecialchars($video_description); ?></p>
     </div>

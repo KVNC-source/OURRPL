@@ -30,6 +30,15 @@ try {
         $user_name = $user['username'];
         $user_age = $user['age'];
         $user_gender = $user['gender'];
+
+        // Determine profile picture based on gender
+        $profile_picture = "../images/default.png"; // Default profile picture
+        if ($user_gender === "Male") {
+            $profile_picture = "../images/male-profile.png";
+        } elseif ($user_gender === "Female") {
+            $profile_picture = "../images/female-profile.png";
+        }
+
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
@@ -124,7 +133,7 @@ try {
         </div>
 
         <div class="profile">
-          <img src="../images/pic-1.jpg" class="image" alt="" />
+          <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
           <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">Student</p>
           <a href="profile.php" class="btn">View Profile</a>
@@ -138,7 +147,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">Student</p>
         <a href="profile.php" class="btn">View Profile</a>

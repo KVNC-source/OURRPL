@@ -26,8 +26,17 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Extract the username for display
+        // Extract user details for display
         $user_name = $user['username'];
+        $user_gender = $user['gender'];
+
+        // Determine profile picture based on gender
+        $profile_picture = "../images/default.png"; // Default profile picture
+        if ($user_gender === "Male") {
+            $profile_picture = "../images/male-profile.png";
+        } elseif ($user_gender === "Female") {
+            $profile_picture = "../images/female-profile.png";
+        }
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
@@ -71,7 +80,7 @@ try {
         </div>
 
         <div class="profile">
-          <img src="../images/pic-1.jpg" class="image" alt="" />
+        <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
          <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">studen</p>
           <a href="profile.php" class="btn">view profile</a>
@@ -79,7 +88,7 @@ try {
             <a href="login_register.php" class="option-btn">logout</a>
           </div>
           <div class="flex-btn">
-            <a href="update.php" class="option-btn">lUpdate</a>
+            <a href="update.php" class="option-btn">Update</a>
           </div>
         </div>
       </section>
@@ -93,7 +102,7 @@ try {
     </div>
 
     <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="">
+    <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">student</p>
         <a href="profile.php" class="btn">view profile</a>

@@ -26,8 +26,17 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Extract the username for display
+        // Extract user details for display
         $user_name = $user['username'];
+        $user_gender = $user['gender'];
+
+        // Determine profile picture based on gender
+        $profile_picture = "../images/default.png"; // Default profile picture
+        if ($user_gender === "Male") {
+            $profile_picture = "../images/male-profile.png";
+        } elseif ($user_gender === "Female") {
+            $profile_picture = "../images/female-profile.png";
+        }
     } else {
         // If no user found, destroy session and redirect
         session_destroy();
@@ -70,7 +79,7 @@ try {
         </div>
 
         <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+        <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"></h3>  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">student</p>
         <a href="../PHP/profile.php" class="btn">view profile</a>
@@ -78,7 +87,7 @@ try {
           <a href="/Project RPL/PHP/login_register.php" class="option-btn">logout</a>
         </div>
         <div class="flex-btn">
-          <a href="update.php" class="option-btn">lUpdate</a>
+          <a href="update.php" class="option-btn">Update</a>
         </div>
       </div>
     </section>
@@ -91,7 +100,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">studen</p>
         <a href="profile.php" class="btn">view profile</a>
@@ -119,7 +128,7 @@ try {
 
       <div class="details">
         <div class="tutor">
-          <img src="../images/pic-2.jpg" alt="" />
+          <img src="../images/school.png" alt="" />
           <h3>Ms. Anissa</h3>
           <a href="mailto:tutor@example.com" class="email">tutor@example.com</a>
         </div>
@@ -136,38 +145,11 @@ try {
       <div class="box-container">
         <div class="box">
           <div class="thumb">
-            <img src="../images/thumb-1.png" alt="" />
+            <img src="../images/INDOT.jpg" alt="" />
             <span>10 videos</span>
           </div>
-          <h3 class="title">complete HTML tutorial</h3>
-          <a href="playlist.php" class="inline-btn">view playlist</a>
-        </div>
-
-        <div class="box">
-          <div class="thumb">
-            <img src="../images/thumb-2.png" alt="" />
-            <span>10 videos</span>
-          </div>
-          <h3 class="title">complete CSS tutorial</h3>
-          <a href="playlist.php" class="inline-btn">view playlist</a>
-        </div>
-
-        <div class="box">
-          <div class="thumb">
-            <img src="../images/thumb-3.png" alt="" />
-            <span>10 videos</span>
-          </div>
-          <h3 class="title">complete javascript tutorial</h3>
-          <a href="playlist.php" class="inline-btn">view playlist</a>
-        </div>
-
-        <div class="box">
-          <div class="thumb">
-            <img src="../images/thumb-4.png" alt="" />
-            <span>10 videos</span>
-          </div>
-          <h3 class="title">complete Boostrap tutorial</h3>
-          <a href="playlist.php" class="inline-btn">view playlist</a>
+          <h3 class="title">Bahasa Indonesia</h3>
+          <a href="../Mapel/playlist_BINDO.php" class="inline-btn">view playlist</a>
         </div>
       </div>
     </section>
