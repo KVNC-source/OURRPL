@@ -77,12 +77,15 @@ try {
         </div>
 
         <div class="profile">
-          <img src="images/pic-1.jpg" class="image" alt="" />
+        <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
           <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">studen</p>
           <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>
           <div class="flex-btn">
             <a href="/Project RPL/PHP/login_register.php" class="option-btn">logout</a>
+          </div>
+          <div class="flex-btn">
+            <a href="/Project RPL/PHP/update.php" class="option-btn">Update</a>
           </div>
         </div>
       </section>
@@ -94,7 +97,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">studen</p>
         <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>

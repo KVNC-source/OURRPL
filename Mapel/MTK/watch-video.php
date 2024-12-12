@@ -35,9 +35,9 @@ try {
       // Determine profile picture based on gender
       $profile_picture = "../images/default.png"; // Default profile picture
       if ($user_gender === "Male") {
-          $profile_picture = "../images/male-profile.png";
+          $profile_picture = "/Project RPL/images/male-profile.png";
       } elseif ($user_gender === "Female") {
-          $profile_picture = "../images/female-profile.png";
+          $profile_picture = "/Project RPL/images/female-profile.png";
       }
     } else {
       // If no user found, destroy session and redirect
@@ -145,12 +145,12 @@ try {
       <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
          <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">studen</p>
-          <a href="profile.php" class="btn">view profile</a>
+          <a href="/PROJECT RPL/PHP/profile.php" class="btn">view profile</a>
           <div class="flex-btn">
-            <a href="login_register.php" class="option-btn">logout</a>
+            <a href="/PROJECT RPL/PHP/login_register.php" class="option-btn">logout</a>
           </div>
           <div class="flex-btn">
-            <a href="update.php" class="option-btn">lUpdate</a>
+            <a href="/PROJECT RPL/PHP/update.php" class="option-btn">Update</a>
           </div>
         </div>
       </section>
@@ -158,10 +158,9 @@ try {
 
 
     <div class="side-bar">
-    <!-- Close button inside the sidebar -->
-    <div id="close-btn">
+      <div id="close-btn">
         <i class="fas fa-times"></i>
-    </div>
+      </div>
 
     <div class="profile">
     <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
@@ -199,10 +198,9 @@ try {
         </p>
       </div>
       <div class="tutor">
-        <img src="../images/MTK/pic-2.jpg" alt="" />
+        <img src="/Project RPL/images/school.png" alt="" />
         <div>
-          <h3>john deo</h3>
-          <span>developer</span>
+          <h3>Ms. Ratna</h3>
         </div>
       </div>
       <form action="" method="post" class="flex">

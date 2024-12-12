@@ -80,19 +80,19 @@ if ($user) {
     $user_name = $user['username'];
     $user_gender = $user['gender'];
 
-    // Determine profile picture based on gender
-    $profile_picture = "../images/default.png"; // Default profile picture
-    if ($user_gender === "Male") {
-        $profile_picture = "../images/male-profile.png";
-    } elseif ($user_gender === "Female") {
-        $profile_picture = "../images/female-profile.png";
+      // Determine profile picture based on gender
+      $profile_picture = "../images/default.png"; // Default profile picture
+      if ($user_gender === "Male") {
+          $profile_picture = "/Project RPL/images/male-profile.png";
+      } elseif ($user_gender === "Female") {
+          $profile_picture = "/Project RPL/images/female-profile.png";
+      }
+    } else {
+      // If no user found, destroy session and redirect
+      session_destroy();
+      header("Location: /Project RPL/PHP/login_register.php");
+      exit();
     }
-} else {
-    // If no user found, destroy session and redirect
-    session_destroy();
-    header("Location: /Project RPL/PHP/login_register.php");
-    exit();
-}
     // Fetch all comments for the video
     $stmt = $conn->prepare("SELECT c.*, u.username
                             FROM comments c 
@@ -146,7 +146,7 @@ if ($user) {
           <a href="/Project RPL/PHP/login_register.php" class="option-btn">logout</a>
         </div>
         <div class="flex-btn">
-          <a href="update.php" class="option-btn">lUpdate</a>
+          <a href="update.php" class="option-btn">Update</a>
         </div>
       </div>
     </section>
@@ -192,10 +192,9 @@ if ($user) {
         </p>
       </div>
       <div class="tutor">
-        <img src="../images/MTK/pic-2.jpg" alt="" />
+        <img src="/Project RPL/images/school.png" alt="" />
         <div>
-          <h3>john deo</h3>
-          <span>developer</span>
+          <h3>Ms. Ratna</h3>
         </div>
       </div>
       <form action="" method="post" class="flex">

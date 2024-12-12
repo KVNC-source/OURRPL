@@ -84,6 +84,9 @@ try {
           <div class="flex-btn">
             <a href="/Project RPL/PHP/login_register.php" class="option-btn">logout</a>
           </div>
+          <div class="flex-btn">
+            <a href="/Project RPL/PHP/update.php" class="option-btn">Update</a>
+          </div>
         </div>
       </section>
     </header>

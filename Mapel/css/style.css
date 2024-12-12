@@ -49,14 +49,6 @@ body {
   padding-left: 0rem;
 }
 
-body.dark {
-  --light-color: #aaa;
-  --light-bg: #333;
-  --black: #fff;
-  --white: #222;
-  --border: 0.1rem solid rgba(255, 255, 255, 0.2);
-}
-
 body.active {
   padding-left: 0;
 }
