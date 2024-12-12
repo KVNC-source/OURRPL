@@ -27,7 +27,25 @@ try {
     $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    if ($user) {
+      // Extract user details for display
+      $user_name = $user['username'];
+      $user_gender = $user['gender'];
+    
+      // Determine profile picture based on gender
+      $profile_picture = "../images/default.png"; // Default profile picture
+      if ($user_gender === "Male") {
+          $profile_picture = "../images/male-profile.png";
+      } elseif ($user_gender === "Female") {
+          $profile_picture = "../images/female-profile.png";
+      }
+    } else {
+      // If no user found, destroy session and redirect
+      session_destroy();
+      header("Location: /Project RPL/PHP/login_register.php");
+      exit();
+    }
+    
     if ($user) {
         $user_name = $user['username'];
     } else {
@@ -91,6 +109,7 @@ try {
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -120,11 +139,10 @@ try {
       <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="user-btn" class="fas fa-user"></div>
-        <div id="close-btn" class="fas fa-times"></div>
       </div>
 
       <div class="profile">
-          <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
          <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
           <p class="role">studen</p>
           <a href="profile.php" class="btn">view profile</a>
@@ -146,7 +164,7 @@ try {
     </div>
 
     <div class="profile">
-      <img src="../images/pic-1.jpg" class="image" alt="" />
+    <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
       <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
       <p class="role">studen</p>
       <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>

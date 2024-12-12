@@ -37,7 +37,7 @@ try {
     }
 
     // Get the video ID from the URL
-    $video_id = isset($_GET['video_id']) ? intval($_GET['video_id']) : 6;
+    $video_id = isset($_GET['video_id']) ? intval($_GET['video_id']) : 5;
 
     // Fetch video details from the database
     $query = "SELECT * FROM videos WHERE id = :id";
@@ -75,7 +75,24 @@ try {
             $message[] = 'Comment cannot be empty!';
         }
     }
+if ($user) {
+    // Extract user details for display
+    $user_name = $user['username'];
+    $user_gender = $user['gender'];
 
+    // Determine profile picture based on gender
+    $profile_picture = "../images/default.png"; // Default profile picture
+    if ($user_gender === "Male") {
+        $profile_picture = "../images/male-profile.png";
+    } elseif ($user_gender === "Female") {
+        $profile_picture = "../images/female-profile.png";
+    }
+} else {
+    // If no user found, destroy session and redirect
+    session_destroy();
+    header("Location: /Project RPL/PHP/login_register.php");
+    exit();
+}
     // Fetch all comments for the video
     $stmt = $conn->prepare("SELECT c.*, u.username
                             FROM comments c 
@@ -89,7 +106,26 @@ try {
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
+if ($user) {
+  // Extract user details for display
+  $user_name = $user['username'];
+  $user_gender = $user['gender'];
+
+  // Determine profile picture based on gender
+  $profile_picture = "../images/default.png"; // Default profile picture
+  if ($user_gender === "Male") {
+      $profile_picture = "../images/male-profile.png";
+  } elseif ($user_gender === "Female") {
+      $profile_picture = "../images/female-profile.png";
+  }
+} else {
+  // If no user found, destroy session and redirect
+  session_destroy();
+  header("Location: /Project RPL/PHP/login_register.php");
+  exit();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,11 +154,10 @@ try {
       <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="user-btn" class="fas fa-user"></div>
-        <div id="close-btn" class="fas fa-times"></div>
       </div>
 
       <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"></h3>  <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">student</p>
         <a href="../PHP/profile.php" class="btn">view profile</a>
@@ -142,7 +177,7 @@ try {
     </div>
 
     <div class="profile">
-      <img src="../images/pic-1.jpg" class="image" alt="" />
+    <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
       <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
       <p class="role">studen</p>
       <a href="/Project RPL/PHP/profile.php" class="btn">view profile</a>

@@ -93,6 +93,7 @@ if ($user) {
     header("Location: /Project RPL/PHP/login_register.php");
     exit();
 }
+
     // Fetch all comments for the video
     $stmt = $conn->prepare("SELECT c.*, u.username
                             FROM comments c 
@@ -105,24 +106,6 @@ if ($user) {
     $total_comments = count($comments);
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
-}
-if ($user) {
-  // Extract user details for display
-  $user_name = $user['username'];
-  $user_gender = $user['gender'];
-
-  // Determine profile picture based on gender
-  $profile_picture = "../images/default.png"; // Default profile picture
-  if ($user_gender === "Male") {
-      $profile_picture = "../images/male-profile.png";
-  } elseif ($user_gender === "Female") {
-      $profile_picture = "../images/female-profile.png";
-  }
-} else {
-  // If no user found, destroy session and redirect
-  session_destroy();
-  header("Location: /Project RPL/PHP/login_register.php");
-  exit();
 }
 ?>
 
@@ -153,7 +136,6 @@ if ($user) {
       <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="user-btn" class="fas fa-user"></div>
-        <div id="close-btn" class="fas fa-times"></div>
       </div>
 
       <div class="profile">
