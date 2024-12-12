@@ -79,3 +79,10 @@
   text-decoration: underline;
   color: var(--black);
 }
+
+.contact .box-container .box p {
+  display: block;
+  padding-top: 0.5rem;
+  font-size: 1.8rem;
+  color: var(--light-color);
+}

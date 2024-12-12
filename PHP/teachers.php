@@ -115,7 +115,6 @@ try {
 </div>
 
     <section class="teachers">
-      <h1 class="heading">expert teachers</h1>
       <div class="box-container">
         <div class="box">
           <div class="tutor">

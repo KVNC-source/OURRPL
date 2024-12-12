@@ -46,7 +46,7 @@ try {
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
-?>v
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -154,54 +154,6 @@ try {
             <p>tutors</p>
           </div>
         </div>
-    </section>
-
-    <section class="reviews">
-      <h1 class="heading">Deskripsi Tutor</h1>
-
-      <div class="box-container">
-        <div class="box">
-          <p>
-          Ms. Ratna adalah penggemar teka-teki logika dan permainan strategi seperti catur. 
-          Dengan hobi tersebut, ia membawa pendekatan kreatif dalam mengajarkan konsep matematika, 
-          membuat belajar menjadi seru dan menantang.
-          </p>
-          <div class="student">
-            <img src="../images/pic-2.jpg" alt="" />
-            <div>
-              <h3>Ms. Ratna</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="box">
-          <p>
-          Mr. Imam memiliki hobi bertualang di alam bebas, seperti hiking dan fotografi satwa liar. 
-          Pengalaman ini membantunya menjelaskan fenomena alam dengan cara yang nyata dan relevan, 
-          sehingga sains terasa lebih dekat dengan kehidupan sehari-hari.
-          <div class="student">
-            <img src="../images/pic-3.jpg" alt="" />
-            <div>
-              <h3>Mr. Imam</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="box">
-          <p>
-          Ms. Anissa adalah pecinta sastra yang gemar menulis puisi dan cerpen. 
-          Dengan hobi tersebut, ia membantu siswa menemukan keindahan 
-          dalam kata-kata dan mengembangkan kemampuan berbahasa dengan 
-          cara yang inspiratif.
-          </p>
-          <div class="student">
-            <img src="../images/pic-4.jpg" alt="" />
-            <div>
-              <h3>Ms. Anissa</h3>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- custom js file link  -->

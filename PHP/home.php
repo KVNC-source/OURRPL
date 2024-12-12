@@ -109,12 +109,12 @@ try {
         <a href="about.php"><i class="fas fa-question"></i><span>about</span></a>
         <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
         <a href="teachers.php"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
-        <a href="contact.php"><i class="fas fa-headset"></i><span>contact us</span></a>
+        <a href="contact.php"><i class="fas fa-envelope"></i><span>contact us</span></a>
     </nav>
 </div>
 
 <section class="home-grid">
-    <h1 class="heading">quick options</h1>
+    <h1 class="heading">Non-Academic</h1>
 
     <div class="box-container">
 
@@ -122,15 +122,14 @@ try {
             <h3 class="title">Extras</h3>
             <div class="flex">
                 <a href="index.html"><i class="fas fa-chart-simple"></i><span>Test Your Knowledge</span></a>
-                <a href="https://open.spotify.com/playlist/4nLTHoBe6O9URrHV2LiqXB?si=13527ec869fe4d48"><i class="fas fa-music"></i><span>music</span></a>
             </div>
         </div>
 
         <div class="box">
             <h3 class="title">give us feedback!</h3>
             <div class="flex">
-                <a href="contact.php"><i class="fa-solid fa-hashtag"></i><span>Via Email</span></a>
-                <a href="https://forms.gle/unA7Qfc1zTE8iGmt7"><i class="fab fa-js"></i><span>Form Tanggapan</span></a>
+                <a href="contact.php"><i class="fa-solid fa-envelope"></i><span>Via Email</span></a>
+                <a href="https://forms.gle/unA7Qfc1zTE8iGmt7"><i class="fab fa-google"></i><span>Form Tanggapan</span></a>
         </div>
     </div>
 </section>
