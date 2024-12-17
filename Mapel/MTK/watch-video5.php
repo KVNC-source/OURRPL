@@ -27,15 +27,24 @@ try {
     $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if ($user) {
-        $user_name = $user['username'];
+      // Extract user details for display
+      $user_name = $user['username'];
+      $user_gender = $user['gender'];
+    
+      // Determine profile picture based on gender
+      $profile_picture = "../images/default.png"; // Default profile picture
+      if ($user_gender === "Male") {
+          $profile_picture = "/Project RPL/images/male-profile.png";
+      } elseif ($user_gender === "Female") {
+          $profile_picture = "/Project RPL/images/female-profile.png";
+      }
     } else {
-        session_destroy();
-        header("Location: /Project RPL/PHP/login_register.php");
-        exit();
+      // If no user found, destroy session and redirect
+      session_destroy();
+      header("Location: /Project RPL/PHP/login_register.php");
+      exit();
     }
-
     // Get the video ID from the URL
     $video_id = isset($_GET['video_id']) ? intval($_GET['video_id']) : 5;
 
@@ -51,7 +60,6 @@ try {
         $video_description = $video['description'];
         $video_date = date('d-m-Y', strtotime($video['created_at']));
         $video_url = $video['video_url'];
-        $poster_url = isset($video['thumbnail']) ? $video['thumbnail'] : '../images/default-poster.png';
     } else {
         die("Video not found.");
     }
@@ -74,24 +82,9 @@ try {
         } else {
             $message[] = 'Comment cannot be empty!';
         }
-    }
-if ($user) {
-    // Extract user details for display
-    $user_name = $user['username'];
-    $user_gender = $user['gender'];
-
-      // Determine profile picture based on gender
-      $profile_picture = "../images/default.png"; // Default profile picture
-      if ($user_gender === "Male") {
-          $profile_picture = "/Project RPL/images/male-profile.png";
-      } elseif ($user_gender === "Female") {
-          $profile_picture = "/Project RPL/images/female-profile.png";
-      }
-    } else {
-      // If no user found, destroy session and redirect
-      session_destroy();
-      header("Location: /Project RPL/PHP/login_register.php");
-      exit();
+            // Redirect to the same page to prevent resubmission
+    header("Location: watch-video.php?video_id=" . urlencode($video_id));
+    exit();
     }
 
     // Fetch all comments for the video
@@ -107,6 +100,7 @@ if ($user) {
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
+
 ?>
 
 <!DOCTYPE html>

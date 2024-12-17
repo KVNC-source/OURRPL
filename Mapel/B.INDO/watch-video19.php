@@ -2,13 +2,6 @@
 // Start the session
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    // Redirect to login page if not logged in
-    header("Location: /Project RPL/PHP/login_register.php");
-    exit();
-}
-
 // Include database configuration
 include('C:/xampp/htdocs/Project RPL/db/config.php');
 
@@ -27,7 +20,25 @@ try {
     $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    if ($user) {
+      // Extract user details for display
+      $user_name = $user['username'];
+      $user_gender = $user['gender'];
+    
+      // Determine profile picture based on gender
+      $profile_picture = "../images/default.png"; // Default profile picture
+      if ($user_gender === "Male") {
+          $profile_picture = "/Project RPL/images/male-profile.png";
+      } elseif ($user_gender === "Female") {
+          $profile_picture = "/Project RPL/images/female-profile.png";
+      }
+    } else {
+      // If no user found, destroy session and redirect
+      session_destroy();
+      header("Location: /Project RPL/PHP/login_register.php");
+      exit();
+    }
+    
     if ($user) {
         $user_name = $user['username'];
     } else {
@@ -37,7 +48,7 @@ try {
     }
 
     // Get the video ID from the URL
-    $video_id = isset($_GET['video_id']) ? intval($_GET['video_id']) : 5;
+    $video_id = isset($_GET['video_id']) ? intval($_GET['video_id']) : 20;
 
     // Fetch video details from the database
     $query = "SELECT * FROM videos WHERE id = :id";
@@ -51,7 +62,6 @@ try {
         $video_description = $video['description'];
         $video_date = date('d-m-Y', strtotime($video['created_at']));
         $video_url = $video['video_url'];
-        $poster_url = isset($video['thumbnail']) ? $video['thumbnail'] : '../images/default-poster.png';
     } else {
         die("Video not found.");
     }
@@ -74,25 +84,11 @@ try {
         } else {
             $message[] = 'Comment cannot be empty!';
         }
+            // Redirect to the same page to prevent resubmission
+    header("Location: watch-video.php?video_id=" . urlencode($video_id));
+    exit();
     }
-if ($user) {
-    // Extract user details for display
-    $user_name = $user['username'];
-    $user_gender = $user['gender'];
 
-      // Determine profile picture based on gender
-      $profile_picture = "../images/default.png"; // Default profile picture
-      if ($user_gender === "Male") {
-          $profile_picture = "/Project RPL/images/male-profile.png";
-      } elseif ($user_gender === "Female") {
-          $profile_picture = "/Project RPL/images/female-profile.png";
-      }
-    } else {
-      // If no user found, destroy session and redirect
-      session_destroy();
-      header("Location: /Project RPL/PHP/login_register.php");
-      exit();
-    }
     // Fetch all comments for the video
     $stmt = $conn->prepare("SELECT c.*, u.username
                             FROM comments c 
@@ -108,7 +104,6 @@ if ($user) {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

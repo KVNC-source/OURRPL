@@ -135,7 +135,7 @@ try {
 </section>
 
 <section class="courses">
-    <h1 class="heading">our courses</h1>
+    <h1 class="heading">courses</h1>
 
     <div class="box-container">
         <!-- Example course boxes -->
@@ -144,13 +144,13 @@ try {
                 <img src="../images/school.png" alt="">
                 <div class="info">
                     <h3>Ms. Ratna</h3>
-                    <span>21-10-2022</span>
+                    <span>21-10-2024</span>
                 </div>
             </div>
             
             <div class="thumb">
                 <img src="../images/MathT.png" alt="">
-                <span>10 videos</span>
+                <span>9 videos</span>
             </div>
             <h3 class="title">Matematika</h3>
             <a href="../Mapel/playlist_MTK.php" class="inline-btn">view playlist</a>

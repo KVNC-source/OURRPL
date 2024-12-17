@@ -133,7 +133,7 @@ try {
             <img src="../images/school.png" alt="" />
             <div class="info">
               <h3>Ms. Ratna</h3>
-              <span>21-10-2022</span>
+              <span>21-10-2024</span>
             </div>
           </div>
           <div class="thumb">
@@ -150,7 +150,7 @@ try {
             <img src="../images/school.png" alt="" />
             <div class="info">
               <h3>Mr. Imam</h3>
-              <span>21-10-2022</span>
+              <span>21-10-2024</span>
             </div>
           </div>
           <div class="thumb">
@@ -167,7 +167,7 @@ try {
             <img src="../images/school.png" alt="" />
             <div class="info">
               <h3>Ms. Anissa</h3>
-              <span>21-10-2022</span>
+              <span>21-10-2024</span>
             </div>
           </div>
           <div class="thumb">

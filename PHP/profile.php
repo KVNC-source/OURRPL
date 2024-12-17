@@ -46,6 +46,8 @@ try {
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +100,7 @@ try {
       </div>
 
       <div class="profile">
-        <img src="../images/pic-1.jpg" class="image" alt="" />
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
         <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
         <p class="role">student</p>
         <a href="profile.php" class="btn">view profile</a>
@@ -122,29 +124,47 @@ try {
     </div>
 
     <section class="user-profile">
-      <h1 class="heading">your profile</h1>
+  <h1 class="heading">your profile</h1>
 
-      <div class="info">
-        <div class="user">
-        <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
-          <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
-          <p>student</p>
-        </div>
+  <div class="info">
+    <div class="user">
+      <img src="<?php echo htmlspecialchars($profile_picture); ?>" class="image" alt="Profile Picture">
+      <h3 class="name"><?php echo htmlspecialchars($user_name); ?></h3>
+      <p>student</p>
+    </div>
 
-        <div class="box-container">
-          <div class="box">
-            <div class="flex">
-          <div class="box">
-            <div class="flex">
-              <div>
-                <span>12</span>
-                <p>videos comments</p>
-              </div>
-            </div>
+    <div class="box-container">
+      <!-- User's Data Boxes -->
+      <div class="box">
+        <div class="flex">
+          <div>
+            <span>Email:</span>
+            <p><?php echo htmlspecialchars($user['email']); ?></p>
           </div>
         </div>
       </div>
-    </section>
+
+      <div class="box">
+        <div class="flex">
+          <div>
+            <span>Gender:</span>
+            <p><?php echo htmlspecialchars($user['gender']); ?></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="flex">
+          <div>
+            <span>Registered On:</span>
+            <p><?php echo date('d-m-Y', strtotime($user['created_at'])); ?></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- custom js file link  -->
     <script src="../js/script.js"></script>

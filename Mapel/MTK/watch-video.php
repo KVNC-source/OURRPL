@@ -2,13 +2,6 @@
 // Start the session
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
-    // Redirect to login page if not logged in
-    header("Location: /Project RPL/PHP/login_register.php");
-    exit();
-}
-
 // Include database configuration
 include('C:/xampp/htdocs/Project RPL/db/config.php');
 

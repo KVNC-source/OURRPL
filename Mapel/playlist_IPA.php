@@ -127,7 +127,7 @@ try {
         <div class="column">
           <div class="thumb">
             <img src="../images/IPAT.jpg" alt="" />
-            <span>10 videos</span>
+            <span>8 videos</span>
           </div>
         </div>
         <div class="column">

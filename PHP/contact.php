@@ -141,7 +141,7 @@ try {
 
         <div class="box">
           <i class="fas fa-map-marker-alt"></i>
-          <h3>office address</h3>
+          <h3>address</h3>
           <a href="https://maps.app.goo.gl/8KsJPEG3wt8Fp63H6"
             >Jl. Maengket 33, Wanea, Manado.</a
           >

@@ -140,13 +140,13 @@ try {
     </section>
 
     <section class="courses">
-      <h1 class="heading">our courses</h1>
+      <h1 class="heading">courses</h1>
 
       <div class="box-container">
         <div class="box">
           <div class="thumb">
             <img src="../images/INDOT.jpg" alt="" />
-            <span>10 videos</span>
+            <span>9 videos</span>
           </div>
           <h3 class="title">Bahasa Indonesia</h3>
           <a href="../Mapel/playlist_BINDO.php" class="inline-btn">view playlist</a>
